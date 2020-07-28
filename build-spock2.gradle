@@ -11,6 +11,14 @@ repositories {
     jcenter()
 }
 
+sourceSets {
+    test {
+        java {
+            srcDirs = []
+        }
+    }
+}
+
 dependencies {
     testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy:3.0.4'
