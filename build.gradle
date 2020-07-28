@@ -1,0 +1,42 @@
+plugins {
+    id 'info.solidsoft.pitest' version '1.5.1'
+}
+
+apply plugin: 'groovy'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-3.0'
+    testImplementation 'org.codehaus.groovy:groovy:3.0.4'
+    testImplementation 'org.objenesis:objenesis:3.1'
+    testImplementation 'cglib:cglib-nodep:3.3.0'
+}
+
+test.useJUnitPlatform()
+def maxForks = 1
+if (project.hasProperty('TestMaxForks')) {
+    maxForks = project.property('TestMaxForks').toInteger() // toInteger is required or it interprets '1' as the ASCII of 49
+}
+println "MaxForks: ${maxForks}"
+tasks.withType(Test) {
+    maxParallelForks = maxForks
+}
+pitest.threads = maxForks
+
+pitest {
+    targetClasses = ['com.jdydev.*']
+    mutators = ['ALL']
+    junit5PluginVersion = '0.12'
+    timestampedReports = false
+    outputFormats = ['HTML']
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
