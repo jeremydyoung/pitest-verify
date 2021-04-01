@@ -1,5 +1,5 @@
 # pitest-verify
-Purpose: To execute simple examples of code that does not seem to be mutation coverable.
+Purpose: To execute simple examples of code that do not seem to be mutation coverable.
 
 ## Execute
 `$ ./gradlew pitest`
