@@ -11,4 +11,4 @@ You should find the pitest report in `build/reports/pitest`
 To test with other build configurations, specify the build-X.gradle on the command line
 `$ ./gradlew -b build-spock2.gradle pitest`
 
-The default is the spock 1 configuration since it is compatible with bothe the Spock and junit 4 tests.
+The default is the spock 1 configuration since it is compatible with both the Spock and junit 4 tests.
